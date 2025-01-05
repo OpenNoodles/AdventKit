@@ -60,6 +60,7 @@ public:
 
 	CartesianCoordinates prepareCartesianCoordinates(Direction direction) const {
 		switch (direction.toEnum()) {
+        case Direction::Value::NOONE: throw "";
 		case Direction::Value::UP: return CartesianCoordinates(_local.x(), _local.y() - 1);
 		case Direction::Value::LEFT: return CartesianCoordinates(_local.x() - 1, _local.y());
 		case Direction::Value::DOWN: return CartesianCoordinates(_local.x(), _local.y() + 1);
