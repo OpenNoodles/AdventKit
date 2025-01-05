@@ -39,6 +39,8 @@ add_library(${PROJECT_NAME} STATIC
 )
 target_compile_options(${PROJECT_NAME} PRIVATE ${THIS_PROJECT_COMPILE_OPTIONS})
 target_compile_features(${PROJECT_NAME} PRIVATE ${THIS_PROJECT_COMPILE_FEATURES})
+target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
+
 
 # GOOGLE'S UNIT TESTS:
 include(FetchContent)
