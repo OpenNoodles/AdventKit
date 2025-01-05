@@ -31,12 +31,26 @@ set(THIS_PROJECT_COMPILE_FEATURES
 # DEFINE PROJECT:
 project(AdventKit)
 file(GLOB_RECURSE TARGET_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
-file(GLOB_RECURSE MAIN_TARGET_TOOLS "${CMAKE_CURRENT_SOURCE_DIR}/../tools/*.cpp")
 
 add_library(${PROJECT_NAME} STATIC
     ${TARGET_SOURCES}
-    ${MAIN_TARGET_TOOLS}
 )
 target_compile_options(${PROJECT_NAME} PRIVATE ${THIS_PROJECT_COMPILE_OPTIONS})
 target_compile_features(${PROJECT_NAME} PRIVATE ${THIS_PROJECT_COMPILE_FEATURES})
 
+# GOOGLE'S UNIT TESTS:
+include(FetchContent)
+FetchContent_Declare(
+  googletest
+  GIT_REPOSITORY https://github.com/google/googletest.git
+  GIT_TAG        main
+)
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE) # For Windows: Prevent overriding the parent project's compiler/linker settings
+FetchContent_MakeAvailable(googletest)
+
+# Now simply link against gtest or gtest_main as needed. Eg
+add_executable(example example.cpp)
+target_link_libraries(example gtest_main)
+
+enable_testing()
+add_test(NAME example_test COMMAND example)
