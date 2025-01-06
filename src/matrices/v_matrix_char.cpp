@@ -7,6 +7,10 @@ v_matrix_char::v_matrix_char():
 	_data()
 {}
 
+v_matrix_char::~v_matrix_char() {
+	// invalidate all iterators / walkers
+}
+
 const std::vector<std::vector<char>>& v_matrix_char::data() const {
 	return _data;
 }
