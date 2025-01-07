@@ -3,7 +3,8 @@
 
 TEST(v_matrix_char, DefaultConstructor) {
 	v_matrix_char cut;
-
+	EXPECT_TRUE(cut.data().empty());
+	EXPECT_EQ(cut.data(), std::vector<std::vector<char>>());
 }
 
 
