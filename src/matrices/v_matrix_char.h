@@ -10,28 +10,21 @@ template<> class Walker<VMatrix<char>>;
 	
 
 class v_matrix_char {
-	std::vector<std::vector<char>> _data;
+	using DataType = std::vector<std::vector<char>>;
+	DataType _data;
 
 public:
 	/// Member functions
 	v_matrix_char();
-		// explicit vector( size_type count);
-		// explicit vector( size_type count, const T& value = T());
+	v_matrix_char(const size_t size);
+	v_matrix_char(const size_t width, const size_t height);
+	v_matrix_char(const size_t size, const char value);
+	v_matrix_char(const size_t width, const size_t height, const char value);
+	v_matrix_char(const v_matrix_char& copy);
+	v_matrix_char(const v_matrix_char&& copy);
+	v_matrix_char(std::initializer_list<char> init);
+	v_matrix_char(std::initializer_list<char> init, const size_t height);
 
-		// template< class InputIt >
-		// vector( InputIt first, InputIt last);
-
-		// template< container-compatible-range<T> R >
-		// constexpr vector( std::from_range_t, R&& rg);
-
-		// vector( const vector& other );
-		// vector( vector&& other );
-		// vector( const vector& other);
-		// constexpr vector( const vector& other);
-		
-		// vector( vector&& other);
-		// constexpr vector( vector&& other);
-		// vector( std::initializer_list<T> init);
 	~v_matrix_char();
 	// operator=		assigns values to the container		(public member function)
 	// assign			assigns values to the container		(public member function)
@@ -124,4 +117,11 @@ public:
 	// std::swap(std::vector)			specializes the std::swap algorithm					(function template)
 	// erase(std::vector)		(C++20) erases all elements satisfying specific criteria	(function template)
 	// erase_if(std::vector)	(C++20) erases all elements satisfying specific criteria	(function template)
+
+
+private:
+	DataType initData(const size_t width, const size_t height, const char value = char()) const;
+	DataType initData(const v_matrix_char& copy) const;
+	DataType initData(const std::initializer_list<char>& init, size_t height = 0) const;
+
 };

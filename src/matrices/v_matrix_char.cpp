@@ -3,9 +3,79 @@
 #include <iostream>
 
 
+using DataType = std::vector<std::vector<char>>;
+
 v_matrix_char::v_matrix_char():
 	_data()
 {}
+
+v_matrix_char::v_matrix_char(const size_t size): 
+	_data(initData(size, size))
+{}
+
+// v_matrix_char::v_matrix_char(const size_t width, const size_t height): 
+// 	_data(initData(width, height))
+// {}
+
+// v_matrix_char::v_matrix_char(const size_t size, const char value): 
+// 	_data(initData(size, size, value))
+// {}
+
+// v_matrix_char::v_matrix_char(const size_t width, const size_t height, const char value): 
+// 	_data(initData(width, height, value))
+// {}
+
+// v_matrix_char::v_matrix_char(const v_matrix_char& copy): 
+// 	_data(initData(copy))
+// {}
+
+// v_matrix_char::v_matrix_char(const v_matrix_char&& copy):
+// 	_data(initData(copy))
+// {}
+
+// v_matrix_char::v_matrix_char(std::initializer_list<char> init):
+// 	_data(initData(init))
+// {}
+
+// v_matrix_char::v_matrix_char(std::initializer_list<char> init, const size_t height):
+// 	_data(initData(init, height))
+// {}
+
+
+
+
+
+DataType v_matrix_char::initData(const size_t width, const size_t height, const char value) const {
+	DataType result;
+	result.reserve(height);
+	for (size_t i = 0; i < height; ++i) {
+		result.emplace_back(std::vector<char>(width, value));
+	}
+	return result;
+}
+
+// DataType v_matrix_char::initData(const v_matrix_char& copy) const {
+// 	DataType result;
+// 	result.reserve(copy.height());
+// 	for (const auto& row : copy) {
+// 		result.emplace_back(row);
+// 	}
+// 	return result;
+// }
+
+// DataType v_matrix_char::initData(const std::initializer_list<char>& init, size_t height) const {
+// 	if (height == 0) {
+// 		height = init.size();
+// 	}
+// 	DataType result;
+// 	result.reserve(height);
+// 	for (size_t i = 0; i < height; ++i) {
+// 		result.emplace_back(init);
+// 	}
+// 	return result;
+// }
+
+
 
 v_matrix_char::~v_matrix_char() {
 	// invalidate all iterators / walkers
