@@ -1,5 +1,7 @@
 #include "gtest/gtest.h"
 #include "../../src/matrices/v_matrix_char.h"
+// #include <iostream>
+
 
 TEST(v_matrix_char, DefaultConstructor) {
 	const v_matrix_char cut;
@@ -9,15 +11,15 @@ TEST(v_matrix_char, DefaultConstructor) {
 
 class SizeParametersForConstructor : public ::testing::TestWithParam<size_t> {};
 TEST_P(SizeParametersForConstructor, SquareSizeConstructor) {
-    const size_t size = GetParam();
-	const char defaultValue = char();
-    const v_matrix_char cut(size);
+    const auto sizeValue = GetParam();
+    const v_matrix_char cut(sizeValue);
     const auto& data = cut.data();
+    EXPECT_EQ(data.empty(), sizeValue == 0);
+    EXPECT_EQ(data.size(), sizeValue);
 
-    EXPECT_EQ(data.empty(), size == 0);
-    EXPECT_EQ(data.size(), size);
+	const char defaultValue = char();
 	for (const auto& row : data) {
-    	EXPECT_EQ(data.size(), size);
+    	EXPECT_EQ(data.size(), sizeValue);
 		for (const auto value : row) {
     		EXPECT_EQ(value, defaultValue);
 		}
@@ -26,3 +28,37 @@ TEST_P(SizeParametersForConstructor, SquareSizeConstructor) {
 INSTANTIATE_TEST_SUITE_P(SimpleValues, SizeParametersForConstructor,
     ::testing::Values(0, 1, 2, 3, 4, 5, 6, 99, 100, 999, 1000)
 );
+
+
+
+// class SizeParametersForConstructor : public ::testing::TestWithParam<size_t> {
+// protected:
+//     v_matrix_char _cut;
+//     const std::vector<std::vector<char>>& data;
+//     const char defaultValue = char();
+
+// 	static void SetUpTestSuite() {
+// 		std::cerr << "hehehe 1\n";
+// 	}
+
+//     void SetUp() override {
+// 		std::cerr << "hehehe 2\n";
+
+//         _cut = v_matrix_char(GetParam());
+//         data = cut.data();
+//     }
+// };
+
+// TEST_P(SizeParametersForConstructor, SquareSizeConstructor) {
+// 	const auto& sizeValue = GetParam();
+//     EXPECT_EQ(data.empty(), sizeValue == 0);
+//     EXPECT_EQ(data.size(), sizeValue);
+
+//     for (const auto& row : data) {
+//         EXPECT_EQ(data.size(), sizeValue);
+//         for (const auto value : row) {
+//             EXPECT_EQ(value, defaultValue);
+//         }
+//     }
+// }
+
