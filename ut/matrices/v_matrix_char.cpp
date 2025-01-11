@@ -17,12 +17,12 @@ TEST(VMatrixChar, Container_created_by_default_constructor_can_be_compared_with_
 
 /// v_matrix_char(const size_t)
 class Constructor_SizeT : public ::testing::TestWithParam<size_t> {};
-TEST_P(Constructor_SizeT, Containers_size_matches_given_parameters) {
+TEST_P(Constructor_SizeT, Container_height_matches_given_parameter) {
     const v_matrix_char cut(GetParam());
     EXPECT_EQ(cut.data().empty(), GetParam() == 0);
     EXPECT_EQ(cut.data().size(), GetParam());
 }
-TEST_P(Constructor_SizeT, All_rows_have_the_same_size_equal_given_parameters) {
+TEST_P(Constructor_SizeT, Container_width_matches_given_parameter) {
     const v_matrix_char cut(GetParam());
 	for (const auto& row : cut.data()) {
     	EXPECT_FALSE(row.empty());
@@ -43,12 +43,51 @@ INSTANTIATE_TEST_SUITE_P(SimpleSizeValues, Constructor_SizeT,
 );
 
 
+/// v_matrix_char(const size_t, const size_t)
+class Constructor_SizeT_SizeT : public ::testing::TestWithParam<std::tuple<size_t, size_t>> {};
+TEST_P(Constructor_SizeT_SizeT, Container_height_matches_given_parameter) {
+	const size_t pHeight = std::get<0>(GetParam());
+	const size_t pWidth = std::get<1>(GetParam());
+    const v_matrix_char cut(pHeight, pWidth);
+    EXPECT_EQ(cut.data().empty(), pHeight == 0);
+    EXPECT_EQ(cut.data().size(), pHeight);
+}
+TEST_P(Constructor_SizeT_SizeT, Container_width_matches_given_parameter) {
+	const size_t pHeight = std::get<0>(GetParam());
+	const size_t pWidth = std::get<1>(GetParam());
+    const v_matrix_char cut(pHeight, pWidth);
+	for (const auto& row : cut.data()) {
+    	EXPECT_EQ(row.empty(), pWidth == 0);
+    	EXPECT_EQ(row.size(), pWidth);
+	}
+}
+TEST_P(Constructor_SizeT_SizeT, All_elements_has_default_char_value) {
+	const size_t pHeight = std::get<0>(GetParam());
+	const size_t pWidth = std::get<1>(GetParam());
+    const v_matrix_char cut(pHeight, pWidth);
+	const char defaultValue = char();
+	for (const auto& row : cut.data()) {
+		for (const auto value : row) {
+    		EXPECT_EQ(value, defaultValue);
+		}
+	}
+}
+namespace __Constructor_SizeT_SizeT {
+	const std::vector<size_t> values = {0, 1, 2, 3, 4, 5, 6, 99, 100, 999, 1000};
+}
+INSTANTIATE_TEST_SUITE_P(
+    SimpleSizeValues, 
+    Constructor_SizeT_SizeT, 
+    ::testing::Combine(
+        ::testing::ValuesIn(__Constructor_SizeT_SizeT::values),
+        ::testing::ValuesIn(__Constructor_SizeT_SizeT::values)
+    )
+);
 
 
 
 
 
-// class SizeParametersForConstructor : public ::testing::TestWithParam<std::tuple<size_t, size_t>> {};
 // TEST_P(SizeParametersForConstructorZ, SquareSizeConstructor) {
 // 	const auto width = std::get<0>(GetParam());
 // 	const auto height = std::get<1>(GetParam());
