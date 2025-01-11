@@ -2,8 +2,8 @@
 #include "../Walker.h"
 #include <iostream>
 
-
 using DataType = std::vector<std::vector<char>>;
+
 
 v_matrix_char::v_matrix_char():
 	_data()
@@ -21,10 +21,9 @@ v_matrix_char::v_matrix_char(const size_t height, const size_t width):
 	_data(initData(height, width))
 {}
 
-
-// v_matrix_char::v_matrix_char(const size_t height, const size_t width, const char value): 
-// 	_data(initData(height, width, value))
-// {}
+v_matrix_char::v_matrix_char(const size_t height, const size_t width, const char value): 
+	_data(initData(height, width, value))
+{}
 
 // v_matrix_char::v_matrix_char(const v_matrix_char& copy): 
 // 	_data(initData(copy))
