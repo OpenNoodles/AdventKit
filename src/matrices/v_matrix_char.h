@@ -15,11 +15,11 @@ class v_matrix_char {
 
 public:
 	/// Member functions
-	v_matrix_char();
-	v_matrix_char(const size_t size);
-	v_matrix_char(const size_t height, const size_t width);
-	v_matrix_char(const size_t size, const char value);
-	v_matrix_char(const size_t height, const size_t width, const char value);
+	v_matrix_char();																// empty container
+	v_matrix_char(const size_t size);												// square container with default values
+	v_matrix_char(const size_t size, const char value);								// square container with given value for all elements
+	v_matrix_char(const size_t height, const size_t width);							// rectangle container with default values
+	v_matrix_char(const size_t height, const size_t width, const char value);		// rectangle container with given value for all elements
 	v_matrix_char(const v_matrix_char& copy);
 	v_matrix_char(const v_matrix_char&& copy);
 	v_matrix_char(std::initializer_list<char> init);

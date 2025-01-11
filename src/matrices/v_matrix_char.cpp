@@ -13,13 +13,14 @@ v_matrix_char::v_matrix_char(const size_t size):
 	_data(initData(size, size))
 {}
 
+v_matrix_char::v_matrix_char(const size_t size, const char value): 
+	_data(initData(size, size, value))
+{}
+
 v_matrix_char::v_matrix_char(const size_t height, const size_t width): 
 	_data(initData(height, width))
 {}
 
-// v_matrix_char::v_matrix_char(const size_t size, const char value): 
-// 	_data(initData(size, size, value))
-// {}
 
 // v_matrix_char::v_matrix_char(const size_t height, const size_t width, const char value): 
 // 	_data(initData(height, width, value))
