@@ -17,9 +17,9 @@ public:
 	/// Member functions
 	v_matrix_char();
 	v_matrix_char(const size_t size);
-	v_matrix_char(const size_t width, const size_t height);
+	v_matrix_char(const size_t height, const size_t width);
 	v_matrix_char(const size_t size, const char value);
-	v_matrix_char(const size_t width, const size_t height, const char value);
+	v_matrix_char(const size_t height, const size_t width, const char value);
 	v_matrix_char(const v_matrix_char& copy);
 	v_matrix_char(const v_matrix_char&& copy);
 	v_matrix_char(std::initializer_list<char> init);
@@ -121,7 +121,7 @@ public:
 
 
 private:
-	DataType initData(const size_t width, const size_t height, const char value = char()) const;
+	DataType initData(const size_t height, const size_t width, const char value = char()) const;
 	DataType initData(const v_matrix_char& copy) const;
 	DataType initData(const std::initializer_list<char>& init, size_t height = 0) const;
 

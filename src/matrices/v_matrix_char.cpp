@@ -13,16 +13,16 @@ v_matrix_char::v_matrix_char(const size_t size):
 	_data(initData(size, size))
 {}
 
-// v_matrix_char::v_matrix_char(const size_t width, const size_t height): 
-// 	_data(initData(width, height))
-// {}
+v_matrix_char::v_matrix_char(const size_t height, const size_t width): 
+	_data(initData(height, width))
+{}
 
 // v_matrix_char::v_matrix_char(const size_t size, const char value): 
 // 	_data(initData(size, size, value))
 // {}
 
-// v_matrix_char::v_matrix_char(const size_t width, const size_t height, const char value): 
-// 	_data(initData(width, height, value))
+// v_matrix_char::v_matrix_char(const size_t height, const size_t width, const char value): 
+// 	_data(initData(height, width, value))
 // {}
 
 // v_matrix_char::v_matrix_char(const v_matrix_char& copy): 
@@ -45,7 +45,7 @@ v_matrix_char::v_matrix_char(const size_t size):
 
 
 
-DataType v_matrix_char::initData(const size_t width, const size_t height, const char value) const {
+DataType v_matrix_char::initData(const size_t height, const size_t width, const char value) const {
 	DataType result;
 	result.reserve(height);
 	for (size_t i = 0; i < height; ++i) {
