@@ -3,6 +3,7 @@
 // #include <iostream>
 
 
+/// v_matrix_char()
 class VMatrixChar {};
 TEST(VMatrixChar, Container_created_by_default_constructor_is_empty) {
 	const v_matrix_char cut;
@@ -14,29 +15,24 @@ TEST(VMatrixChar, Container_created_by_default_constructor_can_be_compared_with_
 }
 
 
+/// v_matrix_char(const size_t)
 class Constructor_SizeT : public ::testing::TestWithParam<size_t> {};
 TEST_P(Constructor_SizeT, Containers_size_matches_given_parameters) {
-    const auto sizeValue = GetParam();
-    const v_matrix_char cut(sizeValue);
-    const auto& data = cut.data();
-    EXPECT_EQ(data.empty(), sizeValue == 0);
-    EXPECT_EQ(data.size(), sizeValue);
+    const v_matrix_char cut(GetParam());
+    EXPECT_EQ(cut.data().empty(), GetParam() == 0);
+    EXPECT_EQ(cut.data().size(), GetParam());
 }
 TEST_P(Constructor_SizeT, All_rows_have_the_same_size_equal_given_parameters) {
-    const auto sizeValue = GetParam();
-    const v_matrix_char cut(sizeValue);
-    const auto& data = cut.data();
-	for (const auto& row : data) {
-    	EXPECT_FALSE(data.empty());
-    	EXPECT_EQ(data.size(), sizeValue);
+    const v_matrix_char cut(GetParam());
+	for (const auto& row : cut.data()) {
+    	EXPECT_FALSE(row.empty());
+    	EXPECT_EQ(row.size(), GetParam());
 	}
 }
 TEST_P(Constructor_SizeT, All_elements_has_default_char_value) {
-    const auto sizeValue = GetParam();
-    const v_matrix_char cut(sizeValue);
-    const auto& data = cut.data();
+    const v_matrix_char cut(GetParam());
 	const char defaultValue = char();
-	for (const auto& row : data) {
+	for (const auto& row : cut.data()) {
 		for (const auto value : row) {
     		EXPECT_EQ(value, defaultValue);
 		}

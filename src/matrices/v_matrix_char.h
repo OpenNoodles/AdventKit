@@ -37,8 +37,9 @@ public:
 	void show() const;
 	char value(const size_t x, const size_t y) const;
 	char& value(const size_t x, const size_t y);
-	const std::vector<std::vector<char>>& data() const;
-	std::vector<std::vector<char>>& data();
+	const std::vector<std::vector<char>>& data() const;		// undefined behaviour when v_matrix_char removed
+	std::vector<std::vector<char>>& data();					// undefined behaviour when v_matrix_char removed
+
 	// at				access specified element with bounds checking		(public member function)
 	// operator[]		access specified element							(public member function)
 	// data				direct access to the underlying contiguous storage	(public member function)
