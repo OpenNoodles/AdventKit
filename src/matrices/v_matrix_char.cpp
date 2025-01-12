@@ -25,16 +25,16 @@ v_matrix_char::v_matrix_char(const size_t height, const size_t width, const char
 	_data(initData(height, width, value))
 {}
 
+v_matrix_char::v_matrix_char(const std::initializer_list<char>& initRow):
+	_data(initData(initRow, 0))
+{}
+
 // v_matrix_char::v_matrix_char(const v_matrix_char& copy): 
 // 	_data(initData(copy))
 // {}
 
 // v_matrix_char::v_matrix_char(const v_matrix_char&& copy):
 // 	_data(initData(copy))
-// {}
-
-// v_matrix_char::v_matrix_char(std::initializer_list<char> init):
-// 	_data(initData(init))
 // {}
 
 // v_matrix_char::v_matrix_char(std::initializer_list<char> init, const size_t height):
@@ -63,17 +63,17 @@ DataType v_matrix_char::initData(const size_t height, const size_t width, const 
 // 	return result;
 // }
 
-// DataType v_matrix_char::initData(const std::initializer_list<char>& init, size_t height) const {
-// 	if (height == 0) {
-// 		height = init.size();
-// 	}
-// 	DataType result;
-// 	result.reserve(height);
-// 	for (size_t i = 0; i < height; ++i) {
-// 		result.emplace_back(init);
-// 	}
-// 	return result;
-// }
+DataType v_matrix_char::initData(const std::initializer_list<char>& initRow, size_t height) const {
+	if (height == 0) {
+		height = initRow.size();
+	}
+	DataType result;
+	result.reserve(height);
+	for (size_t i = 0; i < height; ++i) {
+		result.emplace_back(initRow);
+	}
+	return result;
+}
 
 
 

@@ -20,10 +20,13 @@ public:
 	v_matrix_char(const size_t size, const char value);								// square container with given value for all elements
 	v_matrix_char(const size_t height, const size_t width);							// rectangle container with default values
 	v_matrix_char(const size_t height, const size_t width, const char value);		// rectangle container with given value for all elements
+	v_matrix_char(const std::initializer_list<char>& initRow);								// square from given values, row is duplicated 'n' times
+	v_matrix_char(const std::initializer_list<char>& initRow, const size_t height);			// rectangle from given values, row is duplicated 'height' times
+	v_matrix_char(const std::initializer_list<std::initializer_list<char>>& initMatrix);	// custom matrix, will throw if given rows with unequal size
 	v_matrix_char(const v_matrix_char& copy);
 	v_matrix_char(const v_matrix_char&& copy);
-	v_matrix_char(std::initializer_list<char> init);
-	v_matrix_char(std::initializer_list<char> init, const size_t height);
+	v_matrix_char(const std::vector<std::vector<char>>& copy);
+	v_matrix_char(const std::vector<std::vector<char>>&& copy);	
 
 	~v_matrix_char();
 	// operator=		assigns values to the container		(public member function)
@@ -123,6 +126,5 @@ public:
 private:
 	DataType initData(const size_t height, const size_t width, const char value = char()) const;
 	DataType initData(const v_matrix_char& copy) const;
-	DataType initData(const std::initializer_list<char>& init, size_t height = 0) const;
-
+	DataType initData(const std::initializer_list<char>& initRow, size_t height = 0) const;
 };
